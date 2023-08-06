@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="124dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:ignore="MissingConstraints">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@id/commandNr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Command Number"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/eventName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/commandNr"
+                    android:layout_marginTop="8dp"
+                    android:text="Event Name"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/commandDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/eventName"
+                    android:layout_marginTop="8dp"
+                    android:text="Detalii comanda"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:id="@+id/orderedAt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/commandDetails"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Data comenzii:"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/ticketStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/orderedAt"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Categorie bilet: "
+                    android:textSize="12sp" />
+
+                <com.example.tsm_app.CustomSpinner
+                    android:id="@+id/optionSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/orderedAt"
+                    android:layout_toEndOf="@id/ticketStatus"
+                    android:layout_marginTop="5dp"
+                    android:maxHeight="15dp" />
+
+                <TextView
+                    android:id="@+id/ticketNr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/optionSpinner"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Nr. bilete:"
+                    android:textSize="12sp" />
+
+
+                <EditText
+                    android:id="@+id/ticketCountInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/optionSpinner"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toEndOf="@id/ticketNr"
+                    android:inputType="number"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/totalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ticketNr"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@id/commandNr"
+                    android:text="Pret total:"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/deleteOrderButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/totalPrice"
+                    android:layout_marginTop="8dp"
+                    android:maxHeight="8dp"
+                    android:text="Sterge comanda" />
+
+
+                <Button
+                    android:id="@+id/saveOrderButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/totalPrice"
+                    android:layout_toEndOf="@id/deleteOrderButton"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="15dp"
+                    android:maxHeight="8dp"
+                    android:text="Salveaza" />
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

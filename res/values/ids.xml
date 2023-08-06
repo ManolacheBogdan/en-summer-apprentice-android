@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="txtName" type="id" />
+    <item name="parent" type="id" />
+    <item name="txtDescription" type="id" />
+    <item name="image" type="id" />
+    <item name="title" type="id" />
+    <item name="photo" type="id" />
+    <item name="commandNr" type="id" />
+</resources>
