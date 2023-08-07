@@ -27,9 +27,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     private List<EventModel> events;
 
-    public void setEvents(List<EventModel> events) {
+
+    public EventAdapter(List<EventModel> events) {
         this.events = events;
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -40,11 +40,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull EventViewHolder holder, int position){
         if (holder instanceof EventViewHolder) {
             EventViewHolder eventViewHolder = (EventViewHolder) holder;
             EventModel event = events.get(position);
-            // Bind event data to the EventViewHolder here...
             switch (event.getEventImageUrl()) {
                 case "@drawable/untold":
                     eventViewHolder.photo.setImageResource(R.drawable.untold);
@@ -66,7 +65,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             }
             eventViewHolder.eventName.setText(event.getName());
             eventViewHolder.eventDescription.setText(event.getDescription());
-        } else if (holder instanceof ControlsViewHolder) {
+        } /*else if (holder instanceof ControlsViewHolder) {
             ControlsViewHolder controlsViewHolder = (ControlsViewHolder) holder;
             String[] ticketCategories = controlsViewHolder.itemView.getResources().getStringArray(R.array.ticket_categories);
 
@@ -75,14 +74,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             controlsViewHolder.optionSpinner.setAdapter(spinnerAdapter);
 
-            controlsViewHolder.buyButton.setOnClickListener(new View.OnClickListener() {
+            controlsViewHolder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     String selectedOption = eventViewHolder.optionSpinner.getSelectedItem().toString();
                     String ticketCount = eventViewHolder.ticketCountInput.getText().toString();
                 }
             });
-        }
+        }*/
     }
 
 
@@ -96,19 +95,30 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         public ImageView photo;
         public TextView eventName;
         public TextView eventDescription;
-        public Spinner optionSpinner;
-        public EditText ticketCountInput;
-        public Button button;
+
 
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
             photo = itemView.findViewById(R.id.photo);
             eventName = itemView.findViewById(R.id.title);
             eventDescription = itemView.findViewById(R.id.txtDescription);
+        }
+    }
+
+
+    public static class ControlsViewHolder extends RecyclerView.ViewHolder{
+        public Spinner optionSpinner;
+        public EditText ticketCountInput;
+        public Button button;
+
+
+        public ControlsViewHolder(@NonNull View itemView){
+            super(itemView);
             optionSpinner = itemView.findViewById(R.id.optionSpinner);
             ticketCountInput = itemView.findViewById(R.id.ticketCountInput);
             button = itemView.findViewById(R.id.button);
-
         }
     }
+
 }
+

@@ -20,10 +20,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import Adapters.EventAdapter;
 import Entities.EventModel;
 import Service.IEventService;
 import retrofit2.Call;
@@ -36,8 +38,10 @@ import RetrofitClient.RetrofitClient;
 
 public class MainActivity extends AppCompatActivity  implements SearchView.OnQueryTextListener {
 
+        private List<EventModel> eventsList = new ArrayList<>();
 
-        String[] ticketCategories = {"VIP", "Standard"};
+
+       String[] ticketCategories = {"VIP", "Standard"};
         private Spinner filterSpinner;
 
         @SuppressLint("MissingInflatedId")
@@ -46,7 +50,7 @@ public class MainActivity extends AppCompatActivity  implements SearchView.OnQue
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
 
-            View cardLayout1 = findViewById(R.id.Untold);
+         /*   View cardLayout1 = findViewById(R.id.Untold);
             ImageView photoImageView1 = cardLayout1.findViewById(R.id.photo);
             TextView titleTextView1 = cardLayout1.findViewById(R.id.title);
             TextView descriptionTextView1 = cardLayout1.findViewById(R.id.txtDescription);
@@ -80,6 +84,13 @@ public class MainActivity extends AppCompatActivity  implements SearchView.OnQue
             photoImageView4.setImageResource(R.drawable.fotbal);
             titleTextView4.setText("UCL final");
             descriptionTextView4.setText("Cea de a 69-a editie a celui mai mare eveniment fotbalistic inter-cluburi va avea loc pe stadionul Wembley, in editia 2023-2024, pentru a 8-a oara in istoria UEFA Champions League!");
+*/
+            /*EventModel event1 = new EventModel(5,"Festival De Muzica","Aleea Stadioului 2, Cluj-Napoca", "Untold", "Muzica Electronica si nu numai", "2023-03-08 00:00:00.000", "2023-06-08 00:00:00.000", "Standard", "@drawable/untold" );
+            events.add(event1);*/
+
+            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+            EventAdapter eventAdapter = new EventAdapter(eventsList);
+            recyclerView.setAdapter(eventAdapter);
 
             Retrofit retrofit = RetrofitClient.getRetrofitInstance();
             IEventService eventService = retrofit.create(IEventService.class);
@@ -91,7 +102,6 @@ public class MainActivity extends AppCompatActivity  implements SearchView.OnQue
                     if (response.isSuccessful()) {
                         List<EventModel> events = response.body();
                         if (events != null) {
-                            // Do something with the list of events
                             for (EventModel event : events) {
                                 Log.d("EVENT", "Event Name: " + event.getName());
                             }
@@ -117,7 +127,7 @@ public class MainActivity extends AppCompatActivity  implements SearchView.OnQue
             SearchView searchView = (SearchView) searchItem.getActionView();
             searchView.setOnQueryTextListener(this);
 
-            MenuItem filterMenuItem = menu.findItem(R.id.filter); // Replace R.id.filter with your filter icon's menu item ID
+            MenuItem filterMenuItem = menu.findItem(R.id.filter);
             filterSpinner = (Spinner) filterMenuItem.getActionView();
 
             List<String> filterOptions = new ArrayList<>();
